@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}Home{% endblock %}</title> 
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        <nav class="navbar"> 
+            <div>
+                {% if user.is_authenticated %}
+                <a class="nav_item" id="home" href="/">Home</a>
+                <a class="nav_item" id="programList" href="/programList"> Prog </a>
+                <a class="nav_item" id="logout" href="/logout">signout</a>
+                {% else %}
+                <a class="nav_item" id="login" href="/login">Login</a>
+                <a class="nav_item" id="SignUp" href="/sign-up">Signup</a>
+                {% endif %}
+            </div>
+        </nav>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {%for message in messages%}
+            <div class="alert">
+            {{message}} 
+            </div> 
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <div class="container">
+            {% block content %}
+            {% endblock %}
+        </div> 
+        <script 
+            type="text/javascript"
+            src="{{ url_for('static',filename='index.js')}}"
+        ></script>
+    </body>
+</html>

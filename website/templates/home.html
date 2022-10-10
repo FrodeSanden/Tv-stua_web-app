@@ -1,0 +1,36 @@
+{%extends "base.html"%} {% block title %}Home{% endblock %}
+
+{%block content%}
+<h1> dine programmer </h1> 
+<ul class="list" id="programs">
+    {% for program in user.programs %}
+    <li class="list-item">
+        {{ program.Name }}
+        <button type="button" class="close" onCLick="deleteProgram({{ program.id }})">
+            DEL
+        </button>
+    </li> 
+    {% endfor %}   
+</ul> 
+<form method="POST">
+    <h3 align="center"> Legg til program  </h3> 
+    <div class="form_group">
+        <label for="name">Navn</label>
+        <input type="name" class="form-control" id="name" name="name" placeholder="Skriv inn navn"> 
+    </div>
+    <div class="form_group">
+        <label for="time_start">tid start</label>
+        <input type="number" class="form-control" id="time_start" name="time_start" placeholder="hhmm"> 
+    </div>
+    <div class="form_group">
+        <label for="time_end">tid slutt</label>
+        <input type="number" class="form-control" id="time_end" name="time_end" placeholder="hhmm"> 
+    </div>
+    <div class="form_group">
+        <label for="date">Dato</label>
+        <input type="number" class="form-control" id="date" name="date" placeholder="mmdd"> 
+    </div>
+    <br/>
+    <button type="submit" class="btn">Legg Til</button>
+</form>
+{%endblock%}

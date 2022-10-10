@@ -1,0 +1,19 @@
+{%extends "base.html"%} {% block title %}ProgList{% endblock %}
+
+{%block content%}
+<h1> Programmer</h1> 
+<form method="GET">
+   <input type="number" placeholder="ddmm" name="date" id="date">
+   <button type="submit">vis</button> 
+</form>
+{% for program in Program %}
+    <div>
+        {{program.Name}}
+        {{program.time_start}} - {{program.time_end}}
+        {{program.votes}}
+        <button type="button" class="close" onCLick="voteProgram({{ program.id }}, {{date}})">
+            vote
+        </button>
+    </div>
+{% endfor %} 
+{%endblock%}
